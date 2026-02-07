@@ -39,7 +39,7 @@ class TasksController extends Controller
     public function store(TaskRequest $request)
     {
         Task::create($request->only(['title', 'description']));
-        return redirect()->route('tasks.index');
+        return redirect()->route('tasks.index')->withSuccess('Создана задача: '.$request->title);
     }
 
     /**
@@ -74,7 +74,7 @@ class TasksController extends Controller
     public function update(TaskRequest $request, Task $task)
     {
         $task->update($request->only(['title', 'description']));
-        return redirect()->route('tasks.index');
+        return redirect()->route('tasks.index')->withSuccess('Обновлена задача: '.$task->title);
     }
 
     /**
@@ -86,6 +86,6 @@ class TasksController extends Controller
     public function destroy(Task $task)
     {
         $task->delete();
-        return redirect()->route('tasks.index');
+        return redirect()->route('tasks.index')->withDanger('Удалена задача: '.$task->title);
     }
 }
