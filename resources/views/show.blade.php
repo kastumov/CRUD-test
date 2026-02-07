@@ -15,5 +15,10 @@
         </ul>
     </div>
 
-    <a href="{{ route('tasks.edit', $task) }}" type="button" class="btn btn-warning mt-3">Редактировать</a>
+    <form method="POST" class="mt-3" action="{{ route('tasks.destroy', $task) }}">
+        <a href="{{ route('tasks.edit', $task) }}" type="button" class="btn btn-warning">Редактировать</a>
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger">Удалить</button>
+    </form>
 @endsection

@@ -22,7 +22,14 @@
             <td><a href="{{route('tasks.show', $task) }}">{{ $task->title }}</a></td>
             <td><a href="{{route('tasks.show', $task) }}">{{ $task->description }}</a></td>
             <td>{{ $task->status }}</td>
-            <td><a href="{{ route('tasks.edit', $task) }}" type="button" class="btn btn-warning">Редактировать</a></td>
+            <td>
+                <form method="POST" action="{{ route('tasks.destroy', $task) }}">
+                    <a href="{{ route('tasks.edit', $task) }}" type="button" class="btn btn-warning">Редактировать</a>
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Удалить</button>
+                </form>
+            </td>
         </tr>
         @endforeach
         </tbody>
