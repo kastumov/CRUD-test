@@ -1,7 +1,19 @@
 @extends('layout')
 
-@section('title', 'Tasks')
+@section('title', 'Задача '.$task->title)
 
 @section('content')
-    {{ dd($task) }}
+    <a href="{{route('tasks.index') }}" type="button" class="btn btn-secondary mb-3 mt-2">Вернуться к задачам</a>
+    <div class="card" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Id: {{$task->id}}</li>
+            <li class="list-group-item">Заголовок: {{$task->title}}</li>
+            <li class="list-group-item">Описание задачи: {{$task->description}}</li>
+            <li class="list-group-item">Статус: {{$task->status}}</li>
+            <li class="list-group-item">Дата создания: {{$task->created_at->format('d.m.y h:m:s')}}</li>
+            <li class="list-group-item">Дата изменения: {{$task->updated_at->format('d.m.y h:m:s')}}</li>
+        </ul>
+    </div>
+
+    <a href="{{ route('tasks.edit', $task) }}" type="button" class="btn btn-warning mt-3">Редактировать</a>
 @endsection

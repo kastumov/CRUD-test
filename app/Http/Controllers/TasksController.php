@@ -49,7 +49,7 @@ class TasksController extends Controller
      */
     public function show(Task $task)
     {
-        return view('show');
+        return view('show', compact ('task'));
     }
 
     /**

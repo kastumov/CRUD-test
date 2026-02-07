@@ -19,8 +19,8 @@
         @foreach($tasks as $task)
         <tr>
             <th scope="row">{{ $task->id }}</th>
-            <td>{{ $task->title }}</td>
-            <td>{{ $task->description }}</td>
+            <td><a href="{{route('tasks.show', $task) }}">{{ $task->title }}</a></td>
+            <td><a href="{{route('tasks.show', $task) }}">{{ $task->description }}</a></td>
             <td>{{ $task->status }}</td>
             <td><a href="{{ route('tasks.edit', $task) }}" type="button" class="btn btn-warning">Редактировать</a></td>
         </tr>
