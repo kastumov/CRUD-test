@@ -33,11 +33,12 @@ class TasksController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-
+        Task::create($request->only(['title', 'description']));
+        return redirect()->route('tasks.index');
     }
 
     /**
@@ -67,11 +68,12 @@ class TasksController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $task->update($request->only(['title', 'description']));
+        return redirect()->route('tasks.index');
     }
 
     /**

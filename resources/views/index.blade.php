@@ -1,36 +1,30 @@
 @extends('layout')
 
-@section('title', 'Tasks')
+@section('title', 'Задачи')
 
 @section('content')
+    <a class="btn btn-primary" role="button" href="{{ route('tasks.create') }}">Создать задачу</a>
+
     <table class="table">
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Заголовок</th>
+            <th scope="col">Описание задачи</th>
+            <th scope="col">Статус</th>
+            <th scope="col">Действия</th>
         </tr>
         </thead>
         <tbody>
+        @foreach($tasks as $task)
         <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <th scope="row">{{ $task->id }}</th>
+            <td>{{ $task->title }}</td>
+            <td>{{ $task->description }}</td>
+            <td>{{ $task->status }}</td>
+            <td><a href="{{ route('tasks.edit', $task) }}" type="button" class="btn btn-warning">Редактировать</a></td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>John</td>
-            <td>Doe</td>
-            <td>@social</td>
-        </tr>
+        @endforeach
         </tbody>
     </table>
 @endsection
